@@ -1,0 +1,163 @@
+disabled_rules:
+  - todo
+  - nesting
+  - redundant_string_enum_value
+  - valid_ibinspectable
+  - unused_setter_value
+  - inclusive_language
+  - array_init
+  - redundant_optional_initialization
+  - self_binding
+  - trailing_newline
+  - for_where
+  - superfluous_disable_command
+  - invalid_swiftlint_command
+  - duplicate_conditions
+  - blanket_disable_command
+  - prefer_self_in_static_references
+  - switch_case_on_newline
+  - conditional_returns_on_newline
+  - block_based_kvo # too slow
+  - non_optional_string_data_conversion # would be reversed in future releases. https://github.com/realm/SwiftLint/pull/5601
+  - opening_brace # v 0.56.2 introduced a lot of false positives. Revisit this rule when multiline ignore options are released
+  - line_length
+  - function_body_length
+
+opt_in_rules:
+  - non_overridable_class_declaration
+  - private_swiftui_state
+  - weak_delegate
+  - type_body_length
+  - toggle_bool
+  - test_case_accessibility
+  - sorted_imports
+  - return_value_from_void_function
+  - redundant_objc_attribute
+  - prohibited_super_call
+  - private_subject
+  - prefer_zero_over_explicit_init
+  - prefer_self_type_over_type_of_self
+  - prefer_self_in_static_references
+  - number_separator
+  - multiline_parameters_brackets
+  - multiline_literal_brackets
+  - multiline_arguments_brackets
+  - modifier_order
+  - lower_acl_than_parent
+  - identical_operands
+  - flatmap_over_map_reduce
+  - enum_case_associated_values_count
+  - empty_xctest_method
+  - empty_string
+  - empty_collection_literal
+  - contains_over_range_nil_comparison
+  - contains_over_filter_is_empty
+  - contains_over_filter_count
+  - collection_alignment
+  - closure_body_length
+  - overridden_super_call
+  - first_where
+  - private_outlet
+  - private_action
+  - private_unit_test
+  - private_over_fileprivate
+  - last_where
+  - unused_control_flow_label
+  - closure_end_indentation
+  - closure_spacing
+  - contains_over_first_not_nil
+  - empty_count
+  - explicit_init
+  - multiline_parameters
+  - multiline_arguments
+  - vertical_parameter_alignment_on_call
+  - literal_expression_end_indentation
+  - multiple_closures_with_trailing_closure
+  - operator_usage_whitespace
+  - redundant_nil_coalescing
+  - sorted_first_last
+  - unneeded_parentheses_in_closure_argument
+  - multiline_function_chains
+  - fatal_error_message
+  - override_in_extension
+
+enum_case_associated_values_count:
+  warning: 10
+  error: 20
+
+function_parameter_count:
+  warning: 10
+  error: 20
+
+number_separator:
+  minimum_length: 5
+  minimum_fraction_length: 99
+
+allow_zero_lintable_files: true
+
+cyclomatic_complexity:
+  warning: 20
+  error: 300
+  ignores_case_statements: true
+
+generic_type_name:
+  max_length:
+    warning: 30
+
+deployment_target:
+  iOS_deployment_target: "15.0"
+
+analyzer_rules:
+  - unused_import
+  - unused_declaration
+
+large_tuple:
+  warning: 4
+  error: 50
+
+modifier_order:
+  preferred_modifier_order:
+    [
+      acl,
+      setterACL,
+      override,
+      dynamic,
+      mutators,
+      lazy,
+      final,
+      required,
+      convenience,
+      typeMethods,
+      owned,
+    ]
+
+multiline_arguments:
+  only_enforce_after_first_closure_on_first_line: true
+
+switch_case_alignment:
+  indented_cases: true
+
+# opening_brace: # uncomment when ignore options are released
+# allow_multiline_func: true
+# ignore_multiline_type_headers: true
+# ignore_multiline_statement_conditions: true
+# ignore_multiline_function_signatures: true
+
+custom_rules:
+  xctest_subclass:
+    name: "Test class subclass"
+    regex: 'class\s+\w+\s*:\s*XCTest\s*\{'
+    message: "Test class should subclass XCTestCase (not XCTest)"
+    severity: warning
+
+  calendar_current:
+    name: "Use Calendar.gregorian instead of Calendar.current"
+    regex: '[cC]alendar(\s*\.current|\:\s\{\s*\.current\s*\}|\:\s\.current)'
+    message: "The app only supports gregorian calendar, so don't use Calendar.current, which may be a different type"
+    severity: warning
+
+  image_uiImage_resizing:
+    name: "Image resizing"
+    regex: 'Image\(uiImage:(.+\s*)\.resizable\('
+    message: "Image(uiImage:) is not resizable"
+    severity: warning
