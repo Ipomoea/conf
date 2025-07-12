@@ -1,4 +1,4 @@
-# Should be located in ~/.vimrc
+" Should be located in ~/.vimrc
 
 set number
 set relativenumber
