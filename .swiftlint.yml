@@ -18,8 +18,6 @@ disabled_rules:
   - switch_case_on_newline
   - conditional_returns_on_newline
   - block_based_kvo # too slow
-  - non_optional_string_data_conversion # would be reversed in future releases. https://github.com/realm/SwiftLint/pull/5601
-  - opening_brace # v 0.56.2 introduced a lot of false positives. Revisit this rule when multiline ignore options are released
   - line_length
   - function_body_length
   - trailing_comma
@@ -47,7 +45,6 @@ opt_in_rules:
   - lower_acl_than_parent
   - identical_operands
   - flatmap_over_map_reduce
-  - enum_case_associated_values_count
   - empty_xctest_method
   - empty_string
   - empty_collection_literal
@@ -82,10 +79,6 @@ opt_in_rules:
   - fatal_error_message
   - override_in_extension
 
-enum_case_associated_values_count:
-  warning: 10
-  error: 20
-
 function_parameter_count:
   warning: 10
   error: 20
@@ -105,16 +98,9 @@ generic_type_name:
   max_length:
     warning: 30
 
-deployment_target:
-  iOS_deployment_target: "15.0"
-
 analyzer_rules:
   - unused_import
   - unused_declaration
-
-large_tuple:
-  warning: 4
-  error: 50
 
 modifier_order:
   preferred_modifier_order:
@@ -138,32 +124,13 @@ multiline_arguments:
 switch_case_alignment:
   indented_cases: true
 
-# opening_brace: # uncomment when ignore options are released
-# allow_multiline_func: true
-# ignore_multiline_type_headers: true
-# ignore_multiline_statement_conditions: true
-# ignore_multiline_function_signatures: true
+opening_brace:
+  allow_multiline_func: true
+  ignore_multiline_type_headers: true
+  ignore_multiline_statement_conditions: true
+  ignore_multiline_function_signatures: true
 
 excluded:
   - .build
   - .git
   - .swiftpm
-
-custom_rules:
-  xctest_subclass:
-    name: "Test class subclass"
-    regex: 'class\s+\w+\s*:\s*XCTest\s*\{'
-    message: "Test class should subclass XCTestCase (not XCTest)"
-    severity: warning
-
-  calendar_current:
-    name: "Use Calendar.gregorian instead of Calendar.current"
-    regex: '[cC]alendar(\s*\.current|\:\s\{\s*\.current\s*\}|\:\s\.current)'
-    message: "The app only supports gregorian calendar, so don't use Calendar.current, which may be a different type"
-    severity: warning
-
-  image_uiImage_resizing:
-    name: "Image resizing"
-    regex: 'Image\(uiImage:(.+\s*)\.resizable\('
-    message: "Image(uiImage:) is not resizable"
-    severity: warning
