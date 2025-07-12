@@ -35,10 +35,13 @@ Plug 'preservim/tagbar'
 Plug 'vim-airline/vim-airline'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
 
 " Themes
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'morhetz/gruvbox'
+
+call plug#end()
 
 " Plugin config
 let g:lightline = { 'colorscheme': 'palenight' }
@@ -48,8 +51,6 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme = "palenight"
 
 let g:fzf_action = { 'ctrl-t': 'tab split' }
-
-call plug#end()
 
 colorscheme palenight 
 set background=dark
@@ -84,3 +85,6 @@ noremap <C-k> <C-w>k
 
 noremap <C-b>h :bprev<CR>
 noremap <C-b>l :bnext<CR>
+
+nnoremap <C-p> :Files<CR>
+nnoremap <Leader>g :GFiles<CR>
