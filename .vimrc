@@ -1,8 +1,10 @@
 "
 " Should be located in ~/.vimrc
-" Install vimplug using 
+"
+" Install vim-plug using 
 " `curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
-" Then in editor call `:PlugInstall`
+"
+" Then call `:PlugInstall` in editor
 "
 
 set number
