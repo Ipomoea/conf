@@ -36,6 +36,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
+Plug 'christoomey/vim-tmux-navigator'
 
 " Themes
 Plug 'drewtempelmeyer/palenight.vim'
