@@ -71,7 +71,7 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 
 autocmd BufNewFile,BufRead Podfile,*.podspec set filetype=ruby
 
-nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <Leader>e :NERDTreeToggle<CR>
 nnoremap <Leader>j :NERDTreeFind<CR>
 
 noremap <C-t>t :tabnew<CR>
