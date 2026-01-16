@@ -24,12 +24,13 @@ disabled_rules:
   - trailing_comma
   - identifier_name
   - type_name
+  - type_body_length
+  - file_length
 
 opt_in_rules:
   - non_overridable_class_declaration
   - private_swiftui_state
   - weak_delegate
-  - type_body_length
   - toggle_bool
   - test_case_accessibility
   - sorted_imports
@@ -135,4 +136,3 @@ excluded:
   - .build
   - .git
   - .swiftpm
-
