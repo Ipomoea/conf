@@ -6,25 +6,27 @@
 "
 " Then call `:PlugInstall` in editor
 "
-
 set number
 set relativenumber
-set expandtab
-set tabstop=4
 set hlsearch
 set incsearch
-set shiftwidth=4
 set cursorline
 set showmatch
 set autoindent
 set smarttab
-set softtabstop=4
 set nocompatible
 set wildmenu
 set ruler
 
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+
 filetype on
 syntax on
+
+autocmd FileType c,cpp,swift,h,mm,python setlocal tabstop=4 shiftwidth=4 softtabstop=4
 
 let mapleader = " "
 
