@@ -55,7 +55,7 @@ let g:airline_theme = "palenight"
 
 let g:fzf_action = { 'ctrl-t': 'tab split' }
 
-colorscheme palenight 
+silent! colorscheme palenight
 set background=dark
 
 " Start NERDTree when Vim starts with a directory argument.
