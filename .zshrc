@@ -6,24 +6,29 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [ "$(arch)" = "arm64" ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-else
-    eval "$(/usr/local/bin/brew shellenv)"
+# Homebrew (macOS only)
+if [[ "$OSTYPE" == darwin* ]]; then
+    if [ "$(arch)" = "arm64" ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    else
+        eval "$(/usr/local/bin/brew shellenv)"
+    fi
 fi
-
-# PATH
-export PATH=/usr/local/bin:$GEM_HOME/bin:~/.rugby/clt:~/.local/bin:$PATH
-export PATH=~/.lmstudio/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export GEM_HOME=$HOME/.gem
-export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 export PROJ=$HOME/Projects
 export TESTPROJ=$HOME/TestProjects
 export PUBPROJ=$HOME/PublicProjects
+
+# PATH
+export PATH=/usr/local/bin:$GEM_HOME/bin:~/.local/bin:$PATH
+if [[ "$OSTYPE" == darwin* ]]; then
+    export PATH=~/.rugby/clt:~/.lmstudio/bin:$PATH
+    export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig:$PKG_CONFIG_PATH"
+fi
 
 set horizontal-scroll-mode on
 
@@ -55,20 +60,27 @@ fi
 
 alias vimconfig="vim ~/.vimrc"
 alias cls="clear"
-alias cdas="cd $PROJ/aviasales-ios"
 alias cdpp="cd $PUBPROJ"
 alias cdtp="cd $TESTPROJ"
-alias cpycurbranch="git branch --show-current | pbcopy | echo 'Branch name copied'"
-alias uuid="uuidgen | tr 'A-Z' 'a-z' | tr -d '\n' | pbcopy && pbpaste && echo"
 
-# Added by `rbenv init
-eval "$(rbenv init - --no-rehash zsh)"
+# macOS-only aliases (rely on pbcopy/pbpaste/uuidgen or iOS projects)
+if [[ "$OSTYPE" == darwin* ]]; then
+    alias cdas="cd $PROJ/aviasales-ios"
+    alias cpycurbranch="git branch --show-current | pbcopy | echo 'Branch name copied'"
+    alias uuid="uuidgen | tr 'A-Z' 'a-z' | tr -d '\n' | pbcopy && pbpaste && echo"
+fi
+
+# rbenv
+if command -v rbenv >/dev/null 2>&1; then
+    eval "$(rbenv init - --no-rehash zsh)"
+fi
 
 # Integrate fzf to zsh
-eval "$(fzf --zsh)"
+if command -v fzf >/dev/null 2>&1; then
+    eval "$(fzf --zsh)"
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 echo "Loaded ~/.zshrc"
-
