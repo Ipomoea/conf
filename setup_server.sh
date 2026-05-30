@@ -21,6 +21,12 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
         "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
 fi
 
+if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
+    echo "==> Installing powerlevel10k"
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+        "$ZSH_CUSTOM/themes/powerlevel10k"
+fi
+
 if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
     echo "==> Installing vim-plug"
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
