@@ -6,7 +6,7 @@ CONF_REPO="https://raw.githubusercontent.com/Ipomoea/conf/main"
 
 echo "==> Updating apt and installing prerequisites"
 sudo apt-get update
-sudo apt-get install -y zsh git curl vim kitty-terminfo fzf
+sudo apt-get install -y zsh git curl vim kitty-terminfo fzf tmux
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "==> Installing oh-my-zsh"
@@ -44,6 +44,7 @@ backup_and_fetch() {
 backup_and_fetch "$HOME/.zshrc"    "$CONF_REPO/.zshrc"
 backup_and_fetch "$HOME/.vimrc"    "$CONF_REPO/.vimrc"
 backup_and_fetch "$HOME/.p10k.zsh" "$CONF_REPO/.p10k.zsh"
+backup_and_fetch "$HOME/.tmux.conf" "$CONF_REPO/.tmux.conf"
 
 echo "==> Installing vim plugins"
 vim +PlugInstall +qall || echo "    (PlugInstall reported a non-zero exit; check manually with :PlugInstall)"
