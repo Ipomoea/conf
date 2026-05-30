@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-set -euo pipefail
+set -eu
 
 CONF_REPO="https://raw.githubusercontent.com/Ipomoea/conf/main"
 
@@ -35,12 +35,10 @@ fi
 
 echo "==> Fetching zsh and vim configs from Ipomoea/conf"
 backup_and_fetch() {
-    local target="$1"
-    local url="$2"
-    if [ -f "$target" ] && [ ! -L "$target" ]; then
-        cp "$target" "$target.bak.$(date +%Y%m%d%H%M%S)"
+    if [ -f "$1" ] && [ ! -L "$1" ]; then
+        cp "$1" "$1.bak.$(date +%Y%m%d%H%M%S)"
     fi
-    curl -fsSL "$url" -o "$target"
+    curl -fsSL "$2" -o "$1"
 }
 
 backup_and_fetch "$HOME/.zshrc"    "$CONF_REPO/.zshrc"
