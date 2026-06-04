@@ -81,6 +81,7 @@ opt_in_rules:
   - multiline_function_chains
   - fatal_error_message
   - override_in_extension
+  - implicit_return
 
 function_parameter_count:
   warning: 10
