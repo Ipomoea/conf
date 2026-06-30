@@ -49,4 +49,11 @@ backup_and_fetch "$HOME/.tmux.conf" "$CONF_REPO/.tmux.conf"
 echo "==> Installing vim plugins"
 vim +PlugInstall +qall || echo "    (PlugInstall reported a non-zero exit; check manually with :PlugInstall)"
 
+ZSH_PATH="$(command -v zsh)"
+if [ "$SHELL" != "$ZSH_PATH" ]; then
+    echo "==> Changing default shell to zsh"
+    sudo chsh -s "$ZSH_PATH" "$(whoami)"
+fi
+
 echo "Setup completed."
+echo "==> Default shell set to zsh. Log out and back in (or reconnect) to see the changes."
